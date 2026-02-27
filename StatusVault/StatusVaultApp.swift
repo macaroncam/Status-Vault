@@ -10,9 +10,14 @@ import SwiftData
 
 @main
 struct StatusVaultApp: App {
+    @StateObject private var authService = AuthService()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Document.self,
+            ExtractedFields.self,
+            StatusSnapshot.self,
+            TimelineEvent.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,8 +30,12 @@ struct StatusVaultApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if authService.isAuthenticated {
+                MainTabView(authService: authService)
+                    .modelContainer(sharedModelContainer)
+            } else {
+                LockScreen(authService: authService)
+            }
         }
-        .modelContainer(sharedModelContainer)
     }
 }
