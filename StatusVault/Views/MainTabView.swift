@@ -18,6 +18,11 @@ struct MainTabView: View {
                     Label("Documents", systemImage: "doc.fill")
                 }
 
+            ChatView()
+                .tabItem {
+                    Label("Assistant", systemImage: "bubble.left.and.bubble.right.fill")
+                }
+
             SettingsView(authService: authService)
                 .tabItem {
                     Label("Settings", systemImage: "gear")

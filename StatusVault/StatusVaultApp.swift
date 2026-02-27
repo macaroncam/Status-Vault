@@ -17,7 +17,8 @@ struct StatusVaultApp: App {
             Document.self,
             ExtractedFields.self,
             StatusSnapshot.self,
-            TimelineEvent.self
+            TimelineEvent.self,
+            ChatMessage.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
